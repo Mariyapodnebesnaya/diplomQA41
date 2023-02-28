@@ -20,7 +20,6 @@ services:
       POSTGRES_PASSWORD: pass
     ports:
       - '5432:5432'
-
   nodejs:
     image: node:8
     build: gate-simulator
