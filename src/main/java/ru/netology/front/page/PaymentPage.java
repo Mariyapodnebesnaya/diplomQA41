@@ -1,4 +1,4 @@
-package ru.netology.page;
+package ru.netology.front.page;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selectors;
@@ -30,7 +30,7 @@ public class PaymentPage {
     private SelenideElement ownerField = Selenide.$x("//*[text()='Владелец']//following-sibling::*/input[@class= 'input__control']");
     private SelenideElement ownerErrorLabel = Selenide.$x("//span[@class='input__inner' and contains(.,'Владелец')]//span[@class='input__sub']"); /// Поле обязательно для заполнения
 
-    private SelenideElement cvcField = Selenide.$x("//*[text()='CVC/CVV']//following-sibling::*/input[@class= 'input__control']");
+    private SelenideElement cvcInput = Selenide.$x("//*[text()='CVC/CVV']//following-sibling::*/input[@class= 'input__control']");
     private SelenideElement cvcErrorLabel = Selenide.$x("//span[@class='input__inner' and contains(.,'CVC/CVV')]//span[@class='input__sub']");//// Неверный формат
 
 
@@ -60,11 +60,11 @@ public class PaymentPage {
     }
 
     public PaymentPage fillCard(CardDataHelper card) {
-        numberCardInput.setValue(card.getCardNumber());
-        monthInput.setValue(card.getCardMonth());
-        yearInput.setValue(card.getCardYear());
-        ownerField.setValue(card.getCardOwner());
-        cvcField.setValue(card.getCardCvc());
+        numberCardInput.setValue(card.getNumber());
+        monthInput.setValue(card.getMonth());
+        yearInput.setValue(card.getYear());
+        ownerField.setValue(card.getHolder());
+        cvcInput.setValue(card.getCvc());
         return this;
     }
 
@@ -86,5 +86,4 @@ public class PaymentPage {
         Assertions.assertEquals("Ошибка! Банк отказал в проведении операции.", notificationErrorMessage.getText());
         return this;
     }
-
 }

@@ -32,6 +32,7 @@ dependencies {
     implementation 'io.qameta.allure:allure-selenide:2.14.0'
     implementation 'io.rest-assured:rest-assured:4.3.0'
     implementation 'org.slf4j:slf4j-simple:1.7.30'
+    implementation 'io.rest-assured:rest-assured:5.2.0'
     compileOnly 'org.projectlombok:lombok:1.18.20'
 }
 

@@ -12,19 +12,18 @@ import java.util.Locale;
 @Data
 @Builder
 public class CardDataHelper {
-    private static final Faker fakerEn = new Faker(new Locale("en"));
-    private static final Faker fakerRu = new Faker(new Locale("ru"));
+    private static final Faker FAKER = new Faker(Locale.ENGLISH);
 
     @Builder.Default
-    private String cardNumber = Cards.APPROVED.getName();
+    private String number = Cards.APPROVED.getName();
     @Builder.Default
-    private String cardMonth = generateMonth(1);
+    private String month = generateMonth(1);
     @Builder.Default
-    private String cardYear = generateYear(0);
+    private String year = generateYear(1);
     @Builder.Default
-    private String cardOwner = generateName(fakerEn);
+    private String holder = generateName(FAKER);
     @Builder.Default
-    private String cardCvc = fakerEn.numerify("###");
+    private String cvc = FAKER.numerify("###");
 
     private static String generateMonth(int plusMonth) {
         return LocalDate.now().plusMonths(plusMonth).format(DateTimeFormatter.ofPattern("MM"));
