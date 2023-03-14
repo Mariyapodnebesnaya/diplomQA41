@@ -2,7 +2,6 @@ package ru.netology.data;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ColumnListHandler;
-import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -33,7 +32,7 @@ public class DbHelper {
                 "FROM credit_request_entity";
         var runner = new QueryRunner();
         try (var conn = getConnection(URL, USER, PASSWORD)) {
-            return runner.query(conn, statusBD, new ScalarHandler<>());
+            return runner.query(conn, statusBD, new ColumnListHandler<>());
         } catch (SQLException e) {
             throw new AssertionError("Ошибка при подключении к БД: " + e.getMessage());
         }

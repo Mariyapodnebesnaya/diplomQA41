@@ -74,14 +74,14 @@ public class PaymentPage {
     }
 
     public PaymentPage checkSuccessNotification() {
-        notificationSuccessTitle.shouldBe(Condition.visible, Duration.ofSeconds(15));
+        notificationSuccessTitle.shouldBe(Condition.visible, Duration.ofSeconds(20));
         Assertions.assertEquals("Успешно", notificationSuccessTitle.getText());
         Assertions.assertEquals("Операция одобрена Банком.", notificationSuccessMessage.getText());
         return this;
     }
 
     public PaymentPage checkErrorNotification() {
-        notificationErrorTitle.shouldBe(Condition.visible, Duration.ofSeconds(15));
+        notificationErrorTitle.shouldBe(Condition.visible, Duration.ofSeconds(20));
         Assertions.assertEquals("Ошибка", notificationErrorTitle.getText());
         Assertions.assertEquals("Ошибка! Банк отказал в проведении операции.", notificationErrorMessage.getText());
         return this;

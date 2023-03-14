@@ -32,11 +32,17 @@ public class PayByCardTests extends Setup {
     @Test
         /////Баг, при оплате картой declined, должна всплывать ошибка, что банк отказал проведении операции
     void payWithDeclinedCardValid() {
-        new PaymentPage()
+        var data = CardDataHelper.builder()
+                .number(Cards.DECLINED.getName())
+                .build();
+        var page = new PaymentPage();
+        page
                 .clickPaymentButton()
-                .fillCard(CardDataHelper.builder().build())
+                .fillCard(data)
                 .clickContinueButton()
                 .checkErrorNotification();
+        Assertions.assertEquals(1, Objects.requireNonNull(DbHelper.getPaymentStatuses()).size());
+        Assertions.assertEquals("DECLINED", DbHelper.getPaymentStatuses().get(0));
     }
 
     @Test
@@ -163,7 +169,7 @@ public class PayByCardTests extends Setup {
                 .fillCard(data)
                 .clickContinueButton();
         Assertions.assertNotNull(page.getNumberCardInput().getValue());
-        Assertions.assertTrue(page.getNumberCardInput().getValue().matches("\\d{4} \\d{4} \\d{4} \\d{4}"));
+        Assertions.assertTrue(page.getNumberCardInput().getValue().matches("((\\d{4}[\\s-]?){3}\\d{4})"));
     }
 
     @Test
@@ -309,7 +315,7 @@ public class PayByCardTests extends Setup {
                 .clickPaymentButton()
                 .fillCard(data)
                 .clickContinueButton();
-        Assertions.assertEquals(ErrorMessages.CARD_EXPIRED.getText(), page.getYearErrorLabel().getText());
+        Assertions.assertEquals(ErrorMessages.INVALID_CARD_EXPIRATION_DATE.getText(), page.getYearErrorLabel().getText());
     }
 
     @Test

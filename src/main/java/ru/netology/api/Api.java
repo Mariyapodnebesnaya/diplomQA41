@@ -4,7 +4,6 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
-import ru.netology.api.requests.PaymentRequest;
 import ru.netology.api.responses.TransactionResponse;
 import ru.netology.data.CardDataHelper;
 
@@ -30,7 +29,7 @@ public class Api {
                 .extract().response().as(TransactionResponse.class);
     }
 
-    public static String postCredit(PaymentRequest request) {
+    public static TransactionResponse postCredit(CardDataHelper request) {
         return given()
                 .spec(SPEC)
                 .body(request)
@@ -38,6 +37,6 @@ public class Api {
                 .post("/api/v1/credit")
                 .then()
                 .statusCode(200)
-                .extract().response().asString();
+                .extract().response().as(TransactionResponse.class);
     }
 }
