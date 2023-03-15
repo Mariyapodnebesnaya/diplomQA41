@@ -39,4 +39,26 @@ public class Api {
                 .statusCode(200)
                 .extract().response().as(TransactionResponse.class);
     }
+
+    public static String postPayAsError(CardDataHelper request) {
+        return given()
+                .spec(SPEC)
+                .body(request)
+                .when()
+                .post("/api/v1/pay")
+                .then()
+                .statusCode(500)
+                .extract().response().asString();
+    }
+
+    public static String postCreditAsError(CardDataHelper request) {
+        return given()
+                .spec(SPEC)
+                .body(request)
+                .when()
+                .post("/api/v1/credit")
+                .then()
+                .statusCode(500)
+                .extract().response().asString();
+    }
 }
