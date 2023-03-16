@@ -15,29 +15,20 @@ public class PaymentPage {
     private SelenideElement purchasePageTitle = Selenide.$(Selectors.byText("Путешествие дня"));
     private SelenideElement paymentButton = Selenide.$x("//span[text()='Купить']//ancestor-or-self::button");
     private SelenideElement creditButton = Selenide.$x("//span[text()='Купить в кредит']//ancestor-or-self::button");
-
     private SelenideElement header = Selenide.$x("//form/preceding-sibling::h3");
-
     private SelenideElement numberCardInput = Selenide.$x("//*[text()='Номер карты']/following-sibling::*/input[@class='input__control']");
-    private SelenideElement numberCardFieldError = Selenide.$x("//span[@class='input__inner' and contains(.,'Номер карты')]//span[@class='input__sub']");  /// неверный формат
-
+    private SelenideElement numberCardFieldError = Selenide.$x("//span[@class='input__inner' and contains(.,'Номер карты')]//span[@class='input__sub']");
     private SelenideElement monthInput = Selenide.$x("//span[@class='input__inner' and contains(.,'Месяц')]//input");
     private SelenideElement monthErrorLabel = Selenide.$x("//span[@class='input__inner' and contains(.,'Месяц')]//span[@class='input__sub']");
-
     private SelenideElement yearInput = Selenide.$x("//*[text()='Год']/following-sibling::*/input[@class='input__control']");
-    private SelenideElement yearErrorLabel = Selenide.$x("//span[@class='input__inner' and contains(.,'Год')]//span[@class='input__sub']"); /// Нверный формат
-
+    private SelenideElement yearErrorLabel = Selenide.$x("//span[@class='input__inner' and contains(.,'Год')]//span[@class='input__sub']");
     private SelenideElement ownerField = Selenide.$x("//*[text()='Владелец']//following-sibling::*/input[@class= 'input__control']");
-    private SelenideElement ownerErrorLabel = Selenide.$x("//span[@class='input__inner' and contains(.,'Владелец')]//span[@class='input__sub']"); /// Поле обязательно для заполнения
-
+    private SelenideElement ownerErrorLabel = Selenide.$x("//span[@class='input__inner' and contains(.,'Владелец')]//span[@class='input__sub']");
     private SelenideElement cvcInput = Selenide.$x("//*[text()='CVC/CVV']//following-sibling::*/input[@class= 'input__control']");
-    private SelenideElement cvcErrorLabel = Selenide.$x("//span[@class='input__inner' and contains(.,'CVC/CVV')]//span[@class='input__sub']");//// Неверный формат
-
-
+    private SelenideElement cvcErrorLabel = Selenide.$x("//span[@class='input__inner' and contains(.,'CVC/CVV')]//span[@class='input__sub']");
     private SelenideElement continueButton = Selenide.$x("//span[text()='Продолжить']");
     private SelenideElement notificationSuccessTitle = Selenide.$x("//div[contains(@class, 'notification_status_ok')]//div[@class='notification__title']");
     private SelenideElement notificationSuccessMessage = Selenide.$x("//div[contains(@class, 'notification_status_ok')]//div[@class='notification__content']");
-
     private SelenideElement notificationErrorTitle = Selenide.$x("//div[contains(@class, 'notification_status_error')]//div[@class='notification__title']");
     private SelenideElement notificationErrorMessage = Selenide.$x("//div[contains(@class, 'notification_status_error')]//div[@class='notification__content']");
 

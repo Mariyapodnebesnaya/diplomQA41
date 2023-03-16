@@ -10,7 +10,7 @@ import ru.netology.data.DbHelper;
 import ru.netology.data.enums.Cards;
 import ru.netology.data.enums.ErrorMessages;
 import ru.netology.front.page.PaymentPage;
-import ru.netology.setup.Setup;
+import ru.netology.front.setup.Setup;
 
 import java.time.Year;
 import java.time.format.DateTimeFormatter;

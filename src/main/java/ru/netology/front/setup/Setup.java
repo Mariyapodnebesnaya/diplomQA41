@@ -1,4 +1,4 @@
-package ru.netology.setup;
+package ru.netology.front.setup;
 
 import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.BeforeEach;

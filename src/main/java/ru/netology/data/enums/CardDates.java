@@ -6,8 +6,7 @@ import lombok.Getter;
 public enum CardDates {
     EXPIRED_DATE(-1, 0),
     NEXT_MONTH(1, 0),
-    NEXT_YEAR(0, 1),
-    ;
+    NEXT_YEAR(0, 1);
 
     private int month;
     private int year;

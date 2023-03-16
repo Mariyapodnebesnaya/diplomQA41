@@ -8,7 +8,6 @@ public enum ErrorMessages {
     INVALID_CARD_EXPIRATION_DATE("Неверно указан срок действия карты"),
     CARD_EXPIRED("Истёк срок действия карты");
 
-
     @Getter
     private String text;
 
