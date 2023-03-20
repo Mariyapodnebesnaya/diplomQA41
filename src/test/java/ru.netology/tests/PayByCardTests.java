@@ -19,6 +19,7 @@ import java.util.Objects;
 
 public class PayByCardTests extends Setup {
     @Test
+    @DisplayName("Отправка формы заполненная валидными данными при оплате картой Approved")
     void payWithApprovedCardValid() {
         new PaymentPage()
                 .clickPaymentButton()
@@ -30,7 +31,7 @@ public class PayByCardTests extends Setup {
     }
 
     @Test
-        /////Баг, при оплате картой declined, должна всплывать ошибка, что банк отказал проведении операции
+    @DisplayName("Отправка формы заполненная валидными данными при оплате картой Declined")
     void payWithDeclinedCardValid() {
         var data = CardDataHelper.builder()
                 .number(Cards.DECLINED.getName())
@@ -246,7 +247,6 @@ public class PayByCardTests extends Setup {
     }
 
     @Test
-    // Баг при вводе 00  в поле месяц, форма отправляется, всплывает сообщение : Успешно. Операция одобрена банком. ОР - при отправке формы должна всплывать ошибка под полем месяц Неверно указан срок действия карты
     @DisplayName("Поле 'Месяц' ввод значения месяца 00 при оплате картой")
     void fieldMonthEnterTheValueOfTheMonthFrom00WhenPayByCard() {
         var data = CardDataHelper.builder()

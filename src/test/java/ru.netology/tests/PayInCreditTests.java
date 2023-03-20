@@ -18,6 +18,7 @@ import java.util.Locale;
 
 public class PayInCreditTests extends Setup {
     @Test
+    @DisplayName("Отправка формы заполненная валидными данными при оплате в кредит картой Approved")
     void payOnCreditWithApprovedCardValid() {
         new PaymentPage()
                 .clickPaymentCreditButton()
@@ -30,6 +31,7 @@ public class PayInCreditTests extends Setup {
     }
 
     @Test
+    @DisplayName("Отправка формы заполненная валидными данными при оплате в кредит картой Declined")
         /////Баг, при оплате в кредит по данным карты  declined, должна всплывать ошибка, что банк отказал проведении операции
     void payOnCreditWithDeclinedCardValid() {
         new PaymentPage()
@@ -245,7 +247,6 @@ public class PayInCreditTests extends Setup {
     }
 
     @Test
-    // Баг при вводе 00  в поле месяц, форма отправляется, всплывает сообщение : Успешно. Операция одобрена банком. ОР - при отправке формы должна всплывать ошибка под полем месяц Неверно указан срок действия карты
     @DisplayName("Поле 'Месяц' ввод значения месяца 00 при оплате в кредит")
     void fieldMonthEnterTheValueOfTheMonthFrom00WhenPayByCard() {
         var data = CardDataHelper.builder()
@@ -346,7 +347,7 @@ public class PayInCreditTests extends Setup {
         Assertions.assertEquals(ErrorMessages.WRONG_FORMAT.getText(), page.getYearErrorLabel().getText());
     }
 
-    @Test   /// баг, нет валидации в поле владелец
+    @Test
     @DisplayName("Поле 'Владелец' ввод значения на кириллице при оплате в кредит")
     void fieldOwnerEnterTheValueInCyrillicWhenPayByCard() {
         var faker = new Faker(new Locale("ru"));
@@ -362,7 +363,7 @@ public class PayInCreditTests extends Setup {
         Assertions.assertEquals(ErrorMessages.WRONG_FORMAT.getText(), page.getOwnerErrorLabel().getText());
     }
 
-    @Test  //баг, нет валидации в поле владелец
+    @Test
     @DisplayName("Поле 'Владелец' ввод цифр при оплате в кредит")
     void fieldOwnerEnterTheNumbersWhenPayByCard() {
         var data = CardDataHelper.builder()
@@ -376,7 +377,7 @@ public class PayInCreditTests extends Setup {
         Assertions.assertEquals(ErrorMessages.WRONG_FORMAT.getText(), page.getOwnerErrorLabel().getText());
     }
 
-    @Test  // баг нет валидации поля владелец
+    @Test
     @DisplayName("Поле 'Владелец' ввод спецсимволов при оплате в кредит")
     void fieldOwnerEnterTheSpecialCharactersWhenPayByCard() {
         var data = CardDataHelper.builder()
