@@ -10,4 +10,34 @@
 2. [План автоматизации тестирования](https://github.com/Mariyapodnebesnaya/diplomQA41/blob/master/docs/Plan.md)
 3. [Отчет о проведенном тестировании](https://github.com/Mariyapodnebesnaya/diplomQA41/blob/master/docs/Report.md)
 4. [Отчёт по итогам автоматизации](https://github.com/Mariyapodnebesnaya/diplomQA41/blob/master/docs/Summary.md)
-### Предусловия
+
+# Запуск приложения
+### Предусловия:
+1. Установленная IntelliJ IDEA.
+2. Установленный Docker Desktop. Скачать можно [здесь](https://www.docker.com/).
+### Иструкция по запуску:
+1. Открыть IntelliJ IDEA
+2. Склонировать [репозиторий](https://github.com/Mariyapodnebesnaya/diplomQA41)
+3. В терминале ItelliJ IDEA запустить необходимые базы данных (MySQL и PostgreSQL), а также NodeJS. Параметры для запуска хранятся в файле `docker-compose.yml` Для запуска необходимо ввести в терминале команду: `docker compose up`. Проверка работающих контейнеров: `docker ps`.
+4. В новой вкладке терминала запустить целевое приложение:               
+      - **для MySQL**- `java -jar artifacts/aqa-shop.jar -P:jdbc.url=jdbc:mysql://localhost:3306/app`             
+  (что бы подключится к БД MySQL, то в файле `application.properties` должна быть строка: `spring.datasource.url=jdbc:mysql://localhost:3306/app`)      
+      - **для PostgresSQL** - `java -P:jdbc.url=jdbc:postgresql://localhost:5432/app -jar artifacts/aqa-shop.jar`     
+  (что бы подключится к БД PostgreSQL, то в файле `application.properties` меняем строку spring.datasource.url на: `spring.datasource.url=jdbc:postgresql://localhost:5432/app`
+5. В новой вкладке терминала запускаем `gate-simulator`: `cd gate-simulator` далее `npm start`.
+
+### Запуск тестов:
+`./gradlew clean test`
+
+### Создания отчета Allure:
+`./gradlew allureServe`
+
+### Перезапуск приложения и тестов:
+Если требуется перезапустить приложение и/или тесты (например, для другой БД), необходимо выполнить остановку работы в запущенных ранее вкладках терминала нажав в них Ctrl+С. Далее выполняем команду: `./gradlew clean`
+
+## **Окружение**
+**Операционная система:** Windows 10 Pro  
+**IDE:** IntelliJ IDEA Community Edition 2022.1.4  
+**JAVA:** corretto-11
+
+
