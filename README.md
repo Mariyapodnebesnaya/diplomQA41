@@ -20,14 +20,13 @@
 2. Склонировать [репозиторий](https://github.com/Mariyapodnebesnaya/diplomQA41)
 3. В терминале ItelliJ IDEA запустить необходимые базы данных (MySQL и PostgreSQL), а также NodeJS. Параметры для запуска хранятся в файле `docker-compose.yml` Для запуска необходимо ввести в терминале команду: `docker compose up`. Проверка работающих контейнеров: `docker ps`.
 4. В новой вкладке терминала запустить целевое приложение:               
-      - **для MySQL**- `java -jar artifacts/aqa-shop.jar -P:jdbc.url=jdbc:mysql://localhost:3306/app`             
-  (что бы подключится к БД MySQL, то в файле `application.properties` должна быть строка: `spring.datasource.url=jdbc:mysql://localhost:3306/app`)      
-      - **для PostgresSQL** - `java -P:jdbc.url=jdbc:postgresql://localhost:5432/app -jar artifacts/aqa-shop.jar`     
-  (что бы подключится к БД PostgreSQL, то в файле `application.properties` меняем строку spring.datasource.url на: `spring.datasource.url=jdbc:postgresql://localhost:5432/app`
+      - **для MySQL**- `java -jar artifacts/aqa-shop.jar -Dspring.datasource.url=jdbc:mysql://localhost:3306/app`              
+      - **для PostgresSQL** - `java -jar artifacts/aqa-shop.jar -Dspring.datasource.url=jdbc:postgresql://localhost:5432/app`     
 5. В новой вкладке терминала запускаем `gate-simulator`: `cd gate-simulator` далее `npm start`.
 
 ### Запуск тестов:
-`./gradlew clean test`
+ - **для MySQL**- `./gradlew clean test allureReport -Durl=jdbc:mysql://localhost:3306/app`
+ - **для PostgresSQL** - `./gradlew clean test allureReport -Durl=jdbc:postgresql://localhost:5432/app`
 
 ### Создания отчета Allure:
 `./gradlew allureServe`
