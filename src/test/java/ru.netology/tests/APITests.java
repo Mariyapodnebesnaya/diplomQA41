@@ -7,19 +7,22 @@ import ru.netology.data.CardDataHelper;
 import ru.netology.data.DbHelper;
 import ru.netology.data.enums.Cards;
 
-public class APITests {
+public class APITests extends BaseApiTest {
+    public static final String APPROVED = "APPROVED";
+    public static final String DECLINED = "DECLINED";
+
     @Test
     void testPayCardApproved() {
-        DbHelper.getPaymentStatuses();
-        Assertions.assertEquals("APPROVED", Api.postPay(CardDataHelper.builder().build()).getStatus());
+        Assertions.assertEquals(APPROVED, Api.postPay(CardDataHelper.builder().build()).getStatus());
+        Assertions.assertEquals(APPROVED, DbHelper.getPaymentStatus());
     }
 
     @Test
     void testPayCardDeclined() {
-        DbHelper.getPaymentStatuses();
-        Assertions.assertEquals("DECLINED", Api.postPay(CardDataHelper.builder()
+        Assertions.assertEquals(DECLINED, Api.postPay(CardDataHelper.builder()
                 .number(Cards.DECLINED.getName())
                 .build()).getStatus());
+        Assertions.assertEquals(DECLINED, DbHelper.getPaymentStatus());
     }
 
     @Test
@@ -31,16 +34,16 @@ public class APITests {
 
     @Test
     void testCreditApproved() {
-        DbHelper.getCreditStatuses();
-        Assertions.assertEquals("APPROVED", Api.postCredit(CardDataHelper.builder().build()).getStatus());
+        Assertions.assertEquals(APPROVED, Api.postCredit(CardDataHelper.builder().build()).getStatus());
+        Assertions.assertEquals(APPROVED, DbHelper.getCreditStatus());
     }
 
     @Test
     void testCreditDeclined() {
-        DbHelper.getCreditStatuses();
-        Assertions.assertEquals("DECLINED", Api.postCredit(CardDataHelper.builder()
+        Assertions.assertEquals(DECLINED, Api.postCredit(CardDataHelper.builder()
                 .number(Cards.DECLINED.getName())
                 .build()).getStatus());
+        Assertions.assertEquals(DECLINED, DbHelper.getCreditStatus());
     }
 
     @Test

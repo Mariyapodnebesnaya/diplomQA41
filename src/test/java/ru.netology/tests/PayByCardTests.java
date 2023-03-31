@@ -10,14 +10,12 @@ import ru.netology.data.DbHelper;
 import ru.netology.data.enums.Cards;
 import ru.netology.data.enums.ErrorMessages;
 import ru.netology.front.page.PaymentPage;
-import ru.netology.front.setup.Setup;
 
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-import java.util.Objects;
 
-public class PayByCardTests extends Setup {
+public class PayByCardTests extends BaseFrontTest {
     @Test
     @DisplayName("Отправка формы заполненная валидными данными при оплате картой Approved")
     void payWithApprovedCardValid() {
@@ -26,8 +24,7 @@ public class PayByCardTests extends Setup {
                 .fillCard(CardDataHelper.builder().build())
                 .clickContinueButton()
                 .checkSuccessNotification();
-        Assertions.assertEquals(1, Objects.requireNonNull(DbHelper.getPaymentStatuses()).size());
-        Assertions.assertEquals("APPROVED", DbHelper.getPaymentStatuses().get(0));
+        Assertions.assertEquals("APPROVED", DbHelper.getPaymentStatus());
     }
 
     @Test
@@ -42,8 +39,7 @@ public class PayByCardTests extends Setup {
                 .fillCard(data)
                 .clickContinueButton()
                 .checkErrorNotification();
-        Assertions.assertEquals(1, Objects.requireNonNull(DbHelper.getPaymentStatuses()).size());
-        Assertions.assertEquals("DECLINED", DbHelper.getPaymentStatuses().get(0));
+        Assertions.assertEquals("DECLINED", DbHelper.getPaymentStatus());
     }
 
     @Test

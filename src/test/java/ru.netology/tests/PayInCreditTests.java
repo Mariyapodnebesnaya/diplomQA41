@@ -10,13 +10,12 @@ import ru.netology.data.DbHelper;
 import ru.netology.data.enums.Cards;
 import ru.netology.data.enums.ErrorMessages;
 import ru.netology.front.page.PaymentPage;
-import ru.netology.front.setup.Setup;
 
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-public class PayInCreditTests extends Setup {
+public class PayInCreditTests extends BaseFrontTest {
     @Test
     @DisplayName("Отправка формы заполненная валидными данными при оплате в кредит картой Approved")
     void payOnCreditWithApprovedCardValid() {
@@ -25,9 +24,8 @@ public class PayInCreditTests extends Setup {
                 .fillCard(CardDataHelper.builder().build())
                 .clickContinueButton()
                 .checkSuccessNotification();
-        Assertions.assertNotNull(DbHelper.getCreditStatuses());
-        Assertions.assertEquals(1, DbHelper.getCreditStatuses().size());
-        Assertions.assertEquals("APPROVED", DbHelper.getCreditStatuses().get(0));
+        Assertions.assertNotNull(DbHelper.getCreditStatus());
+        Assertions.assertEquals("APPROVED", DbHelper.getCreditStatus());
     }
 
     @Test
@@ -41,9 +39,8 @@ public class PayInCreditTests extends Setup {
                         .build())
                 .clickContinueButton()
                 .checkErrorNotification();
-        Assertions.assertNotNull(DbHelper.getCreditStatuses());
-        Assertions.assertEquals(1, DbHelper.getCreditStatuses().size());
-        Assertions.assertEquals("DECLINED", DbHelper.getCreditStatuses().get(0));
+        Assertions.assertNotNull(DbHelper.getCreditStatus());
+        Assertions.assertEquals("DECLINED", DbHelper.getCreditStatus());
     }
 
     @Test
